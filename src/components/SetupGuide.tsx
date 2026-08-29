@@ -29,8 +29,8 @@ export const SetupGuide: React.FC = () => {
           </div>
           <div className="flex flex-wrap gap-2 shrink-0">
             <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-center min-w-[120px]">
-              <div className="text-[10px] text-slate-400 font-semibold uppercase">Gradle Wrapper</div>
-              <div className="font-mono font-bold text-emerald-400 text-xs mt-0.5">./gradlew v9.7.0</div>
+              <div className="text-[10px] text-slate-400 font-semibold uppercase">Gradle Engine</div>
+              <div className="font-mono font-bold text-emerald-400 text-xs mt-0.5">Gradle 9.7.0</div>
             </div>
             <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-center min-w-[120px]">
               <div className="text-[10px] text-slate-400 font-semibold uppercase">CI Workflow</div>
@@ -144,19 +144,19 @@ git push -u origin main</pre>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-          {/* Local Gradlew commands */}
+          {/* Local Gradle commands */}
           <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 space-y-2">
             <div className="flex items-center justify-between text-rose-400 font-bold">
               <span>Local Gradle Build Commands</span>
             </div>
             <p className="text-slate-400 leading-relaxed">
-              You can run the included <code className="text-rose-300">gradlew</code> wrapper on your terminal:
+              Run directly using installed Gradle in your terminal or Android Studio:
             </p>
             <div className="bg-slate-900 p-2.5 rounded-lg font-mono text-[11px] text-amber-300 border border-slate-800 space-y-1">
               <div># Build Debug APK:</div>
-              <div className="text-white">./gradlew assembleDebug</div>
+              <div className="text-white">gradle assembleDebug</div>
               <div className="pt-1"># Build Release APK:</div>
-              <div className="text-white">./gradlew assembleRelease</div>
+              <div className="text-white">gradle assembleRelease</div>
             </div>
           </div>
 
@@ -169,7 +169,7 @@ git push -u origin main</pre>
               To enable instant SMS OTP without reCAPTCHA in Firebase Phone Auth:
             </p>
             <div className="bg-slate-900 p-2.5 rounded-lg font-mono text-[11px] text-slate-300 border border-slate-800">
-              ./gradlew signingReport
+              gradle signingReport
             </div>
             <p className="text-slate-400 text-[11px]">
               Copy the SHA-1 fingerprint and paste it under <strong className="text-slate-200">Firebase Console &gt; Project Settings &gt; Android App &gt; SHA Certificate Fingerprints</strong>.

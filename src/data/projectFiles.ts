@@ -823,35 +823,19 @@ jobs:
         with:
           path: |
             ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: \${{ runner.os }}-gradle-\${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: \${{ runner.os }}-gradle-\${{ hashFiles('**/*.gradle*', '**/gradle.properties') }}
           restore-keys: |
             \${{ runner.os }}-gradle-
 
-      - name: Determine Project Directory & Ensure Wrapper
+      - name: Determine Project Directory
         id: project_dir
         run: |
           if [ -f "build.gradle" ]; then
             echo "dir=." >> $GITHUB_OUTPUT
-            WORK_DIR="."
           elif [ -f "android_project/build.gradle" ]; then
             echo "dir=android_project" >> $GITHUB_OUTPUT
-            WORK_DIR="android_project"
           else
             echo "dir=." >> $GITHUB_OUTPUT
-            WORK_DIR="."
-          fi
-          echo "Working directory is: $WORK_DIR"
-          
-          if [ -f "$WORK_DIR/gradlew" ]; then
-            chmod +x "$WORK_DIR/gradlew"
-          fi
-
-          WRAPPER_JAR="$WORK_DIR/gradle/wrapper/gradle-wrapper.jar"
-          if [ ! -f "$WRAPPER_JAR" ]; then
-            echo "Downloading gradle-wrapper.jar..."
-            mkdir -p "$WORK_DIR/gradle/wrapper"
-            curl -sSL -o "$WRAPPER_JAR" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar || true
           fi
 
       - name: Setup Gradle
@@ -862,22 +846,12 @@ jobs:
       - name: Build Debug APK
         if: \${{ github.event.inputs.build_type == 'all' || github.event.inputs.build_type == 'debug' || github.event_name != 'workflow_dispatch' }}
         working-directory: \${{ steps.project_dir.outputs.dir }}
-        run: |
-          if [ -f "./gradlew" ]; then
-            ./gradlew assembleDebug --stacktrace
-          else
-            gradle assembleDebug --stacktrace
-          fi
+        run: gradle assembleDebug --stacktrace
 
       - name: Build Release APK (Unsigned)
         if: \${{ github.event.inputs.build_type == 'all' || github.event.inputs.build_type == 'release' || github.event_name != 'workflow_dispatch' }}
         working-directory: \${{ steps.project_dir.outputs.dir }}
-        run: |
-          if [ -f "./gradlew" ]; then
-            ./gradlew assembleRelease --stacktrace
-          else
-            gradle assembleRelease --stacktrace
-          fi
+        run: gradle assembleRelease --stacktrace
 
       - name: Upload Debug APK Artifact
         if: always()
@@ -896,67 +870,6 @@ jobs:
           path: \${{ steps.project_dir.outputs.dir }}/app/build/outputs/apk/release/*.apk
           retention-days: 30
           if-no-files-found: warn`
-  },
-  {
-    path: 'android_project/gradlew',
-    name: 'gradlew (Gradle Wrapper Executable)',
-    type: 'gradle',
-    content: `#!/bin/sh
-# Gradle Wrapper Executable Script for Linux & macOS
-# Automatically bootstraps Gradle 8.5 and compiles APK
-
-app_path=$0
-while [ -h "$app_path" ]; do
-    ls=\`ls -ld "$app_path"\`
-    link=\`expr "$ls" : '.*-> \\(.*\\)$'\`
-    if expr "$link" : '/.*' > /dev/null; then
-        app_path="$link"
-    else
-        app_path=\`dirname "$app_path"\`"/$link"
-    fi
-done
-
-APP_BASE_NAME=\`basename "$0"\`
-APP_HOME=\`cd "\\\`dirname \\"$app_path\\"\\\`" >/dev/null && pwd\`
-
-CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
-
-if [ ! -r "$CLASSPATH" ]; then
-    mkdir -p "$APP_HOME/gradle/wrapper"
-    echo "Downloading gradle-wrapper.jar..."
-    curl -sSL -o "$CLASSPATH" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar || true
-fi
-
-JAVACMD=java
-if [ -n "$JAVA_HOME" ] ; then
-    JAVACMD="$JAVA_HOME/bin/java"
-fi
-
-exec "$JAVACMD" "-Dorg.gradle.appname=$APP_BASE_NAME" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"`
-  },
-  {
-    path: 'android_project/gradle/wrapper/gradle-wrapper.properties',
-    name: 'gradle-wrapper.properties',
-    type: 'gradle',
-    content: `distributionBase=GRADLE_USER_HOME
-distributionPath=wrapper/dists
-distributionUrl=https\\://services.gradle.org/distributions/gradle-9.7.0-bin.zip
-zipStoreBase=GRADLE_USER_HOME
-zipStorePath=wrapper/dists`
-  },
-  {
-    path: 'android_project/gradlew.bat',
-    name: 'gradlew.bat (Windows Wrapper)',
-    type: 'gradle',
-    content: `@if "%DEBUG%"=="" @echo off
-@rem Gradle startup script for Windows
-set DIRNAME=%~dp0
-if "%DIRNAME%"=="" set DIRNAME=.
-set APP_BASE_NAME=%~n0
-set APP_HOME=%DIRNAME%
-
-set CLASSPATH=%APP_HOME%\\gradle\\wrapper\\gradle-wrapper.jar
-java -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*`
   },
   {
     path: 'android_project/.gitignore',

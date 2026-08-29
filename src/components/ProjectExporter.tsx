@@ -15,11 +15,7 @@ export const ProjectExporter: React.FC = () => {
 
       // Add all project files to ZIP
       ANDROID_PROJECT_FILES.forEach(file => {
-        if (file.path.endsWith('gradlew')) {
-          zip.file(file.path, file.content, { unixPermissions: '755' });
-        } else {
-          zip.file(file.path, file.content);
-        }
+        zip.file(file.path, file.content);
       });
 
       // Add top-level README for Android Studio

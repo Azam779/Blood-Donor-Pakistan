@@ -45,20 +45,9 @@ jobs:
         with:
           path: |
             ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-
-      - name: Setup Gradle Wrapper & Permissions
-        run: |
-          chmod +x ./gradlew || true
-          WRAPPER_JAR="gradle/wrapper/gradle-wrapper.jar"
-          if [ ! -f "$WRAPPER_JAR" ]; then
-            echo "Downloading gradle-wrapper.jar..."
-            mkdir -p gradle/wrapper
-            curl -sSL -o "$WRAPPER_JAR" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar || true
-          fi
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
@@ -67,21 +56,11 @@ jobs:
 
       - name: Build Debug APK
         if: ${{ github.event.inputs.build_type == 'all' || github.event.inputs.build_type == 'debug' || github.event_name != 'workflow_dispatch' }}
-        run: |
-          if [ -f "./gradlew" ]; then
-            ./gradlew assembleDebug --stacktrace
-          else
-            gradle assembleDebug --stacktrace
-          fi
+        run: gradle assembleDebug --stacktrace
 
       - name: Build Release APK (Unsigned)
         if: ${{ github.event.inputs.build_type == 'all' || github.event.inputs.build_type == 'release' || github.event_name != 'workflow_dispatch' }}
-        run: |
-          if [ -f "./gradlew" ]; then
-            ./gradlew assembleRelease --stacktrace
-          else
-            gradle assembleRelease --stacktrace
-          fi
+        run: gradle assembleRelease --stacktrace
 
       - name: Upload Debug APK Artifact
         if: always()
