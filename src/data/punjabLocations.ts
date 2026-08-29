@@ -1,4 +1,4 @@
-import { DistrictData } from '../types';
+import { DistrictData, DonorRecord } from '../types';
 
 export const PUNJAB_DISTRICTS: DistrictData[] = [
   {
