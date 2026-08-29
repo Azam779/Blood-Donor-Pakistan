@@ -1,0 +1,6 @@
+{
+  "name": "Blood Donor Pakistan",
+  "description": "Production-ready Android application (Java, XML, Gradle, Firebase) for blood donor registration and emergency donor search in Punjab, Pakistan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

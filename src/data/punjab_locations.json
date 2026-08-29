@@ -1,0 +1,149 @@
+{
+  "province": "Punjab",
+  "districts": [
+    {
+      "name": "Lahore",
+      "cities": ["Lahore City", "Model Town", "Cantt", "Gulberg", "DHA", "Johar Town", "Raiwind", "Kahna", "Shahdara", "Wapda Town", "Barki"]
+    },
+    {
+      "name": "Faisalabad",
+      "cities": ["Faisalabad City", "Jaranwala", "Samundri", "Tandlianwala", "Chak Jhumra", "Dijkot", "Khurrianwala"]
+    },
+    {
+      "name": "Rawalpindi",
+      "cities": ["Rawalpindi City", "Gujar Khan", "Taxila", "Murree", "Kahuta", "Kotli Sattian", "Kallar Syedan", "Wah Cantt"]
+    },
+    {
+      "name": "Multan",
+      "cities": ["Multan City", "Shujabad", "Jalalpur Pirwala", "Qadirpur Ran", "Makhdoom Rashid"]
+    },
+    {
+      "name": "Gujranwala",
+      "cities": ["Gujranwala City", "Kamoke", "Nowshera Virkan", "Wazirabad", "Ghakhar Mandi", "Qila Didar Singh", "Alipur Chatha"]
+    },
+    {
+      "name": "Sialkot",
+      "cities": ["Sialkot City", "Daska", "Pasrur", "Sambrial", "Chawinda", "Kotli Loharan"]
+    },
+    {
+      "name": "Bahawalpur",
+      "cities": ["Bahawalpur City", "Ahmedpur East", "Hasilpur", "Khairpur Tamewali", "Yazman", "Uch Sharif"]
+    },
+    {
+      "name": "Sargodha",
+      "cities": ["Sargodha City", "Bhalwal", "Kot Momin", "Shahpur", "Sahiwal", "Sillanwali", "Farooqabad"]
+    },
+    {
+      "name": "Sahiwal",
+      "cities": ["Sahiwal City", "Chichawatni", "Harappa", "Qadirabad"]
+    },
+    {
+      "name": "Gujrat",
+      "cities": ["Gujrat City", "Kharian", "Sarai Alamgir", "Jalalpur Jattan", "Kunjah", "Dinga"]
+    },
+    {
+      "name": "Sheikhupura",
+      "cities": ["Sheikhupura City", "Ferozewala", "Muridke", "Sharakpur", "Safdarabad", "Farooqabad"]
+    },
+    {
+      "name": "Jhang",
+      "cities": ["Jhang City", "Shorkot", "Ahmedpur Sial", "Athara Hazari", "Mandi Shah Jeewna"]
+    },
+    {
+      "name": "Rahim Yar Khan",
+      "cities": ["Rahim Yar Khan City", "Khanpur", "Liaquatpur", "Sadiqabad", "Zahir Pir"]
+    },
+    {
+      "name": "Kasur",
+      "cities": ["Kasur City", "Chunian", "Pattoki", "Kot Radha Kishan", "Raja Jang", "Mustafabad"]
+    },
+    {
+      "name": "Muzaffargarh",
+      "cities": ["Muzaffargarh City", "Alipur", "Jatoi", "Kot Addu", "Sanawan", "Rohillanwali"]
+    },
+    {
+      "name": "Okara",
+      "cities": ["Okara City", "Depalpur", "Renala Khurd", "Hujra Shah Muqeem", "Basirpur", "Haveli Lakha"]
+    },
+    {
+      "name": "Dera Ghazi Khan",
+      "cities": ["DG Khan City", "Taunsa Sharif", "Kot Chutta", "Choti Zareen"]
+    },
+    {
+      "name": "Bahawalnagar",
+      "cities": ["Bahawalnagar City", "Chishtian", "Haroonabad", "Fort Abbas", "Minchinabad", "Dunga Bunga"]
+    },
+    {
+      "name": "Pakpattan",
+      "cities": ["Pakpattan City", "Arifwala", "Noorpur", "Malka Hans"]
+    },
+    {
+      "name": "Toba Tek Singh",
+      "cities": ["Toba Tek Singh City", "Gojra", "Kamalia", "Pir Mahal", "Rajana"]
+    },
+    {
+      "name": "Khanewal",
+      "cities": ["Khanewal City", "Kabirwala", "Mian Channu", "Jahanian", "Abdul Hakim", "Sarai Sidhu"]
+    },
+    {
+      "name": "Attock",
+      "cities": ["Attock City", "Fateh Jang", "Hassan Abdal", "Hazro", "Jand", "Pindi Gheb"]
+    },
+    {
+      "name": "Vehari",
+      "cities": ["Vehari City", "Burewala", "Mailsi", "Gaggoo Mandi", "Tibba Sultanpur"]
+    },
+    {
+      "name": "Mianwali",
+      "cities": ["Mianwali City", "Isa Khel", "Piplan", "Kala Bagh", "Daud Khel"]
+    },
+    {
+      "name": "Chakwal",
+      "cities": ["Chakwal City", "Choa Saidan Shah", "Kallar Kahar", "Talagang", "Lawa"]
+    },
+    {
+      "name": "Bhakkar",
+      "cities": ["Bhakkar City", "Darya Khan", "Kallur Kot", "Mankera", "Behal"]
+    },
+    {
+      "name": "Jhelum",
+      "cities": ["Jhelum City", "Dina", "Pind Dadan Khan", "Sohawa", "Khewra"]
+    },
+    {
+      "name": "Layyah",
+      "cities": ["Layyah City", "Chaubara", "Karor Lal Esan", "Fatehpur", "Chowk Azam"]
+    },
+    {
+      "name": "Khushab",
+      "cities": ["Khushab City", "Jauharabad", "Noorpur Thal", "Quaidabad", "Mitha Tiwana", "Naushera"]
+    },
+    {
+      "name": "Hafizabad",
+      "cities": ["Hafizabad City", "Pindi Bhattian", "Sukheke", "Jalalpur Bhattian"]
+    },
+    {
+      "name": "Lodhran",
+      "cities": ["Lodhran City", "Dunyapur", "Kahror Pacca", "Gogran"]
+    },
+    {
+      "name": "Mandi Bahauddin",
+      "cities": ["Mandi Bahauddin City", "Malakwal", "Phalia", "Qadirabad"]
+    },
+    {
+      "name": "Narowal",
+      "cities": ["Narowal City", "Shakargarh", "Zafarwal", "Baddomalhi"]
+    },
+    {
+      "name": "Nankana Sahib",
+      "cities": ["Nankana Sahib City", "Sangla Hill", "Shahkot", "More Khunda"]
+    },
+    {
+      "name": "Chiniot",
+      "cities": ["Chiniot City", "Bhawana", "Lalian", "Chenab Nagar"]
+    },
+    {
+      "name": "Rajanpur",
+      "cities": ["Rajanpur City", "Jampur", "Rojhan", "Fazilpur", "Kot Mithan"]
+    }
+  ]
+}

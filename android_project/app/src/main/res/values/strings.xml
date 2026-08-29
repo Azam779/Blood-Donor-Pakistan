@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Blood Donor Pakistan</string>
+    <string name="app_tagline">Find Blood. Save Lives.</string>
+    <string name="app_motto">Every donor can save a life.</string>
+
+    <!-- Main Navigation / Home -->
+    <string name="btn_donate_blood">Donate Blood</string>
+    <string name="sub_donate_blood">Register as a blood donor</string>
+    <string name="btn_find_blood">Find Blood Donor</string>
+    <string name="sub_find_blood">Search for an available donor</string>
+    <string name="btn_my_profile">My Donor Profile</string>
+    <string name="btn_about_app">About &amp; Emergency Guide</string>
+
+    <!-- Form Labels -->
+    <string name="label_full_name">Full Name *</string>
+    <string name="hint_full_name">e.g. Muhammad Ali</string>
+    <string name="label_phone">Phone Number *</string>
+    <string name="hint_phone">03001234567 or +923001234567</string>
+    <string name="label_age">Age (18–65 years) *</string>
+    <string name="hint_age">e.g. 25</string>
+    <string name="label_blood_group">Blood Group *</string>
+    <string name="label_province">Province</string>
+    <string name="label_district">District *</string>
+    <string name="label_city">City / Town *</string>
+    <string name="label_area">Area / Locality / Mohalla</string>
+    <string name="hint_area">e.g. Gulberg III, Sector B, Main Bazaar</string>
+    <string name="label_address">Complete Address (Optional)</string>
+    <string name="hint_address">Kept private, never shown in public search</string>
+    <string name="label_availability">Available for Blood Donation</string>
+    <string name="sub_availability">Turn OFF if temporarily unable to donate</string>
+
+    <!-- Buttons -->
+    <string name="btn_register_donor">REGISTER AS DONOR</string>
+    <string name="btn_update_profile">SAVE CHANGES</string>
+    <string name="btn_delete_profile">DELETE MY PROFILE</string>
+    <string name="btn_search_donors">SEARCH DONORS</string>
+    <string name="btn_call_donor">CALL DONOR</string>
+    <string name="btn_back_home">BACK TO HOME</string>
+    <string name="btn_send_otp">SEND VERIFICATION CODE</string>
+    <string name="btn_verify_otp">VERIFY &amp; PROCEED</string>
+
+    <!-- Success & Feedback -->
+    <string name="title_reg_success">Registration Successful</string>
+    <string name="msg_reg_success">Thank you for registering as a blood donor. You may help save someone\'s life.</string>
+    <string name="msg_searching">Searching for donors in Firestore...</string>
+    <string name="msg_no_donors_found">No matching donors found.</string>
+    <string name="msg_no_donors_help">Suggestions:\n• Try selecting another city/town nearby\n• Search the entire district\n• Check for compatible blood groups (e.g., O- for emergencies)</string>
+
+    <!-- Validation Errors -->
+    <string name="err_name_required">Full name is required (min 2 characters)</string>
+    <string name="err_phone_invalid">Please enter a valid Pakistani phone number (e.g. 03001234567)</string>
+    <string name="err_age_invalid">Donor must be between 18 and 65 years old</string>
+    <string name="err_district_required">Please select a district</string>
+    <string name="err_city_required">Please select a city/town</string>
+    <string name="err_blood_group_required">Please select a blood group</string>
+    <string name="err_network">No internet connection. Please check your network.</string>
+    <string name="err_general">An error occurred. Please try again.</string>
+</resources>

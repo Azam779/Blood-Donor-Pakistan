@@ -1,0 +1,94 @@
+{
+  "entities": {
+    "Donor": {
+      "title": "Donor",
+      "description": "Registered blood donor record with contact, blood group, location, and availability status",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Firebase Authentication User ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the blood donor",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "phone": {
+          "type": "string",
+          "description": "Pakistani phone number (e.g., +923001234567 or 03001234567)",
+          "pattern": "^((\\+92)|(0092)|(0))3[0-9]{9}$"
+        },
+        "age": {
+          "type": "integer",
+          "description": "Age of donor (must be 18 to 65 years)"
+        },
+        "bloodGroup": {
+          "type": "string",
+          "description": "Blood group of donor",
+          "enum": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+        },
+        "province": {
+          "type": "string",
+          "description": "Province in Pakistan",
+          "enum": ["Punjab"]
+        },
+        "district": {
+          "type": "string",
+          "description": "District in Punjab"
+        },
+        "city": {
+          "type": "string",
+          "description": "City or Town within the district"
+        },
+        "area": {
+          "type": "string",
+          "description": "Locality / Mohalla / Village / Sector"
+        },
+        "address": {
+          "type": "string",
+          "description": "Complete private address (optional, never displayed in public search)"
+        },
+        "available": {
+          "type": "boolean",
+          "description": "Whether the donor is currently active and available to donate"
+        },
+        "role": {
+          "type": "string",
+          "description": "User role: user or admin",
+          "enum": ["user", "admin"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Firestore server timestamp of creation"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Firestore server timestamp of last update"
+        }
+      },
+      "required": [
+        "uid",
+        "name",
+        "phone",
+        "age",
+        "bloodGroup",
+        "province",
+        "district",
+        "city",
+        "available",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/donors/{donorId}": {
+      "schema": "Donor",
+      "description": "Collection of blood donor documents. Searchable by blood group, district, and city when available is true."
+    }
+  }
+}

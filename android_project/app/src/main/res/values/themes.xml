@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="Theme.BloodDonorPakistan" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary_red</item>
+        <item name="colorPrimaryDark">@color/primary_red_dark</item>
+        <item name="colorAccent">@color/accent_red</item>
+        <item name="colorSurface">@color/surface_white</item>
+        <item name="android:windowBackground">@color/background_light</item>
+        <item name="android:statusBarColor">@color/primary_red_dark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+    </style>
+
+    <!-- Splash Theme -->
+    <style name="Theme.BloodDonorPakistan.Splash" parent="Theme.BloodDonorPakistan">
+        <item name="android:windowBackground">@color/primary_red</item>
+        <item name="android:statusBarColor">@color/primary_red_dark</item>
+    </style>
+
+    <!-- Material Toolbar style -->
+    <style name="Widget.BloodDonorPakistan.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="titleTextColor">@color/white</item>
+        <item name="subtitleTextColor">@color/primary_red_light</item>
+        <item name="android:background">@color/primary_red</item>
+    </style>
+</resources>
