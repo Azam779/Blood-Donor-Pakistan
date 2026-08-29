@@ -857,7 +857,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
-          gradle-version: '8.5'
+          gradle-version: '9.7.0'
 
       - name: Build Debug APK
         if: \${{ github.event.inputs.build_type == 'all' || github.event.inputs.build_type == 'debug' || github.event_name != 'workflow_dispatch' }}
@@ -940,7 +940,7 @@ exec "$JAVACMD" "-Dorg.gradle.appname=$APP_BASE_NAME" -classpath "$CLASSPATH" or
     type: 'gradle',
     content: `distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
-distributionUrl=https\\://services.gradle.org/distributions/gradle-8.5-bin.zip
+distributionUrl=https\\://services.gradle.org/distributions/gradle-9.7.0-bin.zip
 zipStoreBase=GRADLE_USER_HOME
 zipStorePath=wrapper/dists`
   },

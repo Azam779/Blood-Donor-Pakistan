@@ -24,13 +24,13 @@ export const SetupGuide: React.FC = () => {
               Build Android APK Automatically on GitHub
             </h2>
             <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
-              Every push to <code className="text-rose-300 font-mono">main</code> triggers our configured workflow (<code className="text-rose-300 font-mono">.github/workflows/build-apk.yml</code>). GitHub Actions compiles the Android code with Java 17 and Gradle 8.5, then generates ready-to-install <strong className="text-white">Debug &amp; Release APK artifacts</strong>.
+              Every push to <code className="text-rose-300 font-mono">main</code> triggers our configured workflow (<code className="text-rose-300 font-mono">.github/workflows/build-apk.yml</code>). GitHub Actions compiles the Android code with Java 17 and Gradle 9.7.0, then generates ready-to-install <strong className="text-white">Debug &amp; Release APK artifacts</strong>.
             </p>
           </div>
           <div className="flex flex-wrap gap-2 shrink-0">
             <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-center min-w-[120px]">
               <div className="text-[10px] text-slate-400 font-semibold uppercase">Gradle Wrapper</div>
-              <div className="font-mono font-bold text-emerald-400 text-xs mt-0.5">./gradlew v8.5</div>
+              <div className="font-mono font-bold text-emerald-400 text-xs mt-0.5">./gradlew v9.7.0</div>
             </div>
             <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-center min-w-[120px]">
               <div className="text-[10px] text-slate-400 font-semibold uppercase">CI Workflow</div>
