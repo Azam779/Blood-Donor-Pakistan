@@ -804,25 +804,23 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
-      - name: Grant Execute Permission for Gradle Wrapper
-        run: |
-          if [ -f "gradlew" ]; then
-            chmod +x gradlew
-          fi
-          if [ -f "android_project/gradlew" ]; then
-            chmod +x android_project/gradlew
-          fi
-
       - name: Build Debug APK
         run: |
+          if [ -f "settings.gradle" ] || [ -f "settings.gradle.kts" ]; then
+            WORK_DIR="."
+          elif [ -f "android_project/settings.gradle" ] || [ -f "android_project/settings.gradle.kts" ]; then
+            WORK_DIR="android_project"
+          else
+            WORK_DIR="."
+          fi
+          echo "Building Android project from directory: $WORK_DIR"
+          cd "$WORK_DIR"
+
           if [ -f "./gradlew" ]; then
+            chmod +x ./gradlew
             ./gradlew assembleDebug --stacktrace
-          elif [ -f "android_project/gradlew" ]; then
-            cd android_project && ./gradlew assembleDebug --stacktrace
-          elif [ -f "build.gradle" ]; then
+          else
             gradle assembleDebug --stacktrace
-          elif [ -f "android_project/build.gradle" ]; then
-            cd android_project && gradle assembleDebug --stacktrace
           fi
 
       - name: Upload APK Artifact
@@ -830,8 +828,7 @@ jobs:
         with:
           name: debug-apk
           path: |
-            app/build/outputs/apk/debug/*.apk
-            android_project/app/build/outputs/apk/debug/*.apk
+            **/build/outputs/apk/debug/*.apk
           if-no-files-found: warn`
   },
   {
