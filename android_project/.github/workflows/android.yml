@@ -25,6 +25,69 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Configure Google Services Configuration
+        env:
+          GOOGLE_SERVICES_JSON_SECRET: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: |
+          TARGETS=("app/google-services.json" "android_project/app/google-services.json")
+          
+          # If secret is provided in repository secrets, write to all targets
+          if [ -n "$GOOGLE_SERVICES_JSON_SECRET" ]; then
+            echo "Restoring google-services.json from GitHub Secrets..."
+            for target in "${TARGETS[@]}"; do
+              mkdir -p "$(dirname "$target")"
+              echo "$GOOGLE_SERVICES_JSON_SECRET" > "$target"
+            done
+          fi
+
+          # Search for existing google-services.json file in repository
+          FOUND_FILE=$(find . -name "google-services.json" -type f | head -n 1)
+          if [ -n "$FOUND_FILE" ]; then
+            echo "Found existing configuration at $FOUND_FILE, ensuring it is in app target directories..."
+            for target in "${TARGETS[@]}"; do
+              mkdir -p "$(dirname "$target")"
+              if [ ! -f "$target" ]; then
+                cp "$FOUND_FILE" "$target"
+              fi
+            done
+          else
+            echo "Generating fallback google-services.json for com.blooddonorpakistan.app..."
+            for target in "${TARGETS[@]}"; do
+              mkdir -p "$(dirname "$target")"
+              cat << 'EOF' > "$target"
+{
+  "project_info": {
+    "project_number": "233022285048",
+    "project_id": "blood-donor-pakistan",
+    "storage_bucket": "blood-donor-pakistan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233022285048:android:fdd4eb3a0017d314d0470d",
+        "android_client_info": {
+          "package_name": "com.blooddonorpakistan.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLzPZFdEgued1m2GVUBEPuY4qdk5T4XCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+EOF
+            done
+          fi
+
       - name: Build Debug APK
         run: |
           if [ -f "settings.gradle" ] || [ -f "settings.gradle.kts" ]; then
