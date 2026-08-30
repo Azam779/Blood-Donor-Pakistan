@@ -956,6 +956,61 @@ set CLASSPATH=%APP_HOME%\\gradle\\wrapper\\gradle-wrapper.jar
 java -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*`
   },
   {
+    path: 'android_project/app/src/main/res/drawable/ic_launcher_background.xml',
+    name: 'ic_launcher_background.xml',
+    type: 'xml',
+    content: `<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#D32F2F"
+        android:pathData="M0,0h108v108h-108z"/>
+</vector>`
+  },
+  {
+    path: 'android_project/app/src/main/res/drawable/ic_launcher_foreground.xml',
+    name: 'ic_launcher_foreground.xml',
+    type: 'xml',
+    content: `<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Blood Drop White Glyph -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,26 C54,26 34,48 34,62 C34,73 43,82 54,82 C65,82 74,73 74,62 C74,48 54,26 54,26 Z"/>
+    <!-- Highlight Shimmer -->
+    <path
+        android:fillColor="#FFCDD2"
+        android:pathData="M46,55 C44,59 44,65 48,68 C49,69 50,68 49,67 C46,64 46,60 48,56 C49,54 47,53 46,55 Z"/>
+</vector>`
+  },
+  {
+    path: 'android_project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml',
+    name: 'mipmap/ic_launcher.xml',
+    type: 'xml',
+    content: `<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>`
+  },
+  {
+    path: 'android_project/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml',
+    name: 'mipmap/ic_launcher_round.xml',
+    type: 'xml',
+    content: `<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background" />
+    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+</adaptive-icon>`
+  },
+  {
     path: 'android_project/.gitignore',
     name: '.gitignore (Android)',
     type: 'gradle',
