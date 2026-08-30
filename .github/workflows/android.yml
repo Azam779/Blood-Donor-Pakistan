@@ -25,9 +25,22 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Grant Execute Permission for Gradle Wrapper
+        run: |
+          if [ -f "gradlew" ]; then
+            chmod +x gradlew
+          fi
+          if [ -f "android_project/gradlew" ]; then
+            chmod +x android_project/gradlew
+          fi
+
       - name: Build Debug APK
         run: |
-          if [ -f "build.gradle" ]; then
+          if [ -f "./gradlew" ]; then
+            ./gradlew assembleDebug --stacktrace
+          elif [ -f "android_project/gradlew" ]; then
+            cd android_project && ./gradlew assembleDebug --stacktrace
+          elif [ -f "build.gradle" ]; then
             gradle assembleDebug --stacktrace
           elif [ -f "android_project/build.gradle" ]; then
             cd android_project && gradle assembleDebug --stacktrace

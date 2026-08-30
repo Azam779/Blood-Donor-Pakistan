@@ -29,8 +29,8 @@ export const SetupGuide: React.FC = () => {
           </div>
           <div className="flex flex-wrap gap-2 shrink-0">
             <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-center min-w-[120px]">
-              <div className="text-[10px] text-slate-400 font-semibold uppercase">Build Task</div>
-              <div className="font-mono font-bold text-emerald-400 text-xs mt-0.5">assembleDebug</div>
+              <div className="text-[10px] text-slate-400 font-semibold uppercase">Wrapper Script</div>
+              <div className="font-mono font-bold text-emerald-400 text-xs mt-0.5">./gradlew</div>
             </div>
             <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-center min-w-[120px]">
               <div className="text-[10px] text-slate-400 font-semibold uppercase">CI Workflow</div>
@@ -146,13 +146,13 @@ git push -u origin main</pre>
               <span>Local Gradle Build Commands</span>
             </div>
             <p className="text-slate-400 leading-relaxed">
-              Run directly using installed Gradle in your terminal or Android Studio:
+              Run directly using the Gradle wrapper in your terminal or in Android Studio:
             </p>
             <div className="bg-slate-900 p-2.5 rounded-lg font-mono text-[11px] text-amber-300 border border-slate-800 space-y-1">
               <div># Build Debug APK:</div>
-              <div className="text-white">gradle assembleDebug</div>
+              <div className="text-white">./gradlew assembleDebug</div>
               <div className="pt-1"># Build Release APK:</div>
-              <div className="text-white">gradle assembleRelease</div>
+              <div className="text-white">./gradlew assembleRelease</div>
             </div>
           </div>
 

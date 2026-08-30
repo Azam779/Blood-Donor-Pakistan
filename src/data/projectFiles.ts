@@ -799,13 +799,27 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+          cache: 'gradle'
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      - name: Grant Execute Permission for Gradle Wrapper
+        run: |
+          if [ -f "gradlew" ]; then
+            chmod +x gradlew
+          fi
+          if [ -f "android_project/gradlew" ]; then
+            chmod +x android_project/gradlew
+          fi
+
       - name: Build Debug APK
         run: |
-          if [ -f "build.gradle" ]; then
+          if [ -f "./gradlew" ]; then
+            ./gradlew assembleDebug --stacktrace
+          elif [ -f "android_project/gradlew" ]; then
+            cd android_project && ./gradlew assembleDebug --stacktrace
+          elif [ -f "build.gradle" ]; then
             gradle assembleDebug --stacktrace
           elif [ -f "android_project/build.gradle" ]; then
             cd android_project && gradle assembleDebug --stacktrace
@@ -819,6 +833,67 @@ jobs:
             app/build/outputs/apk/debug/*.apk
             android_project/app/build/outputs/apk/debug/*.apk
           if-no-files-found: warn`
+  },
+  {
+    path: 'android_project/gradlew',
+    name: 'gradlew (Gradle Wrapper Executable)',
+    type: 'gradle',
+    content: `#!/bin/sh
+# Gradle Wrapper Executable Script for Linux & macOS
+# Automatically bootstraps Gradle 8.5 and compiles APK
+
+app_path=$0
+while [ -h "$app_path" ]; do
+    ls=\`ls -ld "$app_path"\`
+    link=\`expr "$ls" : '.*-> \\(.*\\)$'\`
+    if expr "$link" : '/.*' > /dev/null; then
+        app_path="$link"
+    else
+        app_path=\`dirname "$app_path"\`"/$link"
+    fi
+done
+
+APP_BASE_NAME=\`basename "$0"\`
+APP_HOME=\`cd "\\\`dirname \\"$app_path\\"\\\`" >/dev/null && pwd\`
+
+CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
+
+if [ ! -r "$CLASSPATH" ]; then
+    mkdir -p "$APP_HOME/gradle/wrapper"
+    echo "Downloading gradle-wrapper.jar..."
+    curl -sSL -o "$CLASSPATH" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar || true
+fi
+
+JAVACMD=java
+if [ -n "$JAVA_HOME" ] ; then
+    JAVACMD="$JAVA_HOME/bin/java"
+fi
+
+exec "$JAVACMD" "-Dorg.gradle.appname=$APP_BASE_NAME" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"`
+  },
+  {
+    path: 'android_project/gradle/wrapper/gradle-wrapper.properties',
+    name: 'gradle-wrapper.properties',
+    type: 'gradle',
+    content: `distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+distributionUrl=https\\://services.gradle.org/distributions/gradle-8.5-bin.zip
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists`
+  },
+  {
+    path: 'android_project/gradlew.bat',
+    name: 'gradlew.bat (Windows Wrapper)',
+    type: 'gradle',
+    content: `@if "%DEBUG%"=="" @echo off
+@rem Gradle startup script for Windows
+set DIRNAME=%~dp0
+if "%DIRNAME%"=="" set DIRNAME=.
+set APP_BASE_NAME=%~n0
+set APP_HOME=%DIRNAME%
+
+set CLASSPATH=%APP_HOME%\\gradle\\wrapper\\gradle-wrapper.jar
+java -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*`
   },
   {
     path: 'android_project/.gitignore',
