@@ -723,10 +723,86 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
 
     // Firebase BoM & Services
-    implementation platform('com.google.firebase:firebase-bom:32.7.2')
+    implementation platform('com.google.firebase:firebase-bom:34.18.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
+}`
+  },
+  {
+    path: 'android_project/build.gradle',
+    name: 'build.gradle (Project: root)',
+    type: 'gradle',
+    content: `// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' version '8.2.2' apply false
+    id 'com.google.gms.google-services' version '4.5.0' apply false
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.buildDir
+}`
+  },
+  {
+    path: 'android_project/settings.gradle',
+    name: 'settings.gradle',
+    type: 'gradle',
+    content: `pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\\\.android.*")
+                includeGroupByRegex("com\\\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "Blood Donor Pakistan"
+include ':app'`
+  },
+  {
+    path: 'android_project/app/google-services.json',
+    name: 'google-services.json',
+    type: 'json',
+    content: `{
+  "project_info": {
+    "project_number": "233022285048",
+    "project_id": "blood-donor-pakistan",
+    "storage_bucket": "blood-donor-pakistan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233022285048:android:fdd4eb3a0017d314d0470d",
+        "android_client_info": {
+          "package_name": "com.blooddonorpakistan.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLzPZFdEgued1m2GVUBEPuY4qdk5T4XCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
 }`
   },
   {
