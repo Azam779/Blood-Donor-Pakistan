@@ -24,17 +24,17 @@ export const SetupGuide: React.FC = () => {
               Build Android APK Automatically on GitHub
             </h2>
             <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
-              Every push to <code className="text-rose-300 font-mono">main</code> triggers our configured workflow (<code className="text-rose-300 font-mono">.github/workflows/build-apk.yml</code>). GitHub Actions compiles the Android code with Java 17 and Gradle 9.7.0, then generates ready-to-install <strong className="text-white">Debug &amp; Release APK artifacts</strong>.
+              Every push to <code className="text-rose-300 font-mono">main</code> triggers our configured workflow (<code className="text-rose-300 font-mono">.github/workflows/android.yml</code>). GitHub Actions compiles the Android code with Java 17 and Gradle via <code className="text-rose-300 font-mono">gradle assembleDebug</code>, producing a ready-to-install <strong className="text-white">Debug APK artifact</strong>.
             </p>
           </div>
           <div className="flex flex-wrap gap-2 shrink-0">
             <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-center min-w-[120px]">
-              <div className="text-[10px] text-slate-400 font-semibold uppercase">Gradle Engine</div>
-              <div className="font-mono font-bold text-emerald-400 text-xs mt-0.5">Gradle 9.7.0</div>
+              <div className="text-[10px] text-slate-400 font-semibold uppercase">Build Task</div>
+              <div className="font-mono font-bold text-emerald-400 text-xs mt-0.5">assembleDebug</div>
             </div>
             <div className="bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-center min-w-[120px]">
               <div className="text-[10px] text-slate-400 font-semibold uppercase">CI Workflow</div>
-              <div className="font-mono font-bold text-rose-400 text-xs mt-0.5">build-apk.yml</div>
+              <div className="font-mono font-bold text-rose-400 text-xs mt-0.5">android.yml</div>
             </div>
           </div>
         </div>
@@ -95,13 +95,13 @@ git push -u origin main</pre>
             </div>
             <div className="bg-slate-900 p-3 rounded-lg border border-slate-800 text-[11px] text-slate-300 space-y-1.5">
               <div className="flex items-center gap-2 text-emerald-400">
-                <CheckCircle className="w-3.5 h-3.5" /> Runs assembleDebug
+                <CheckCircle className="w-3.5 h-3.5" /> Runs gradle assembleDebug
               </div>
               <div className="flex items-center gap-2 text-emerald-400">
-                <CheckCircle className="w-3.5 h-3.5" /> Runs assembleRelease
+                <CheckCircle className="w-3.5 h-3.5" /> Sets up JDK 17 &amp; Gradle
               </div>
               <div className="flex items-center gap-2 text-emerald-400">
-                <CheckCircle className="w-3.5 h-3.5" /> Caches Gradle Dependencies
+                <CheckCircle className="w-3.5 h-3.5" /> Packages APK Artifact
               </div>
             </div>
           </div>
@@ -119,12 +119,8 @@ git push -u origin main</pre>
             </div>
             <div className="bg-slate-900 p-2.5 rounded-lg border border-slate-800 text-[10px] space-y-1.5 font-mono">
               <div className="flex items-center justify-between text-emerald-300">
-                <span>📦 blood-donor-pakistan-debug-apk</span>
-                <span className="text-[9px] bg-emerald-500/20 px-1.5 py-0.5 rounded text-emerald-400">Ready</span>
-              </div>
-              <div className="flex items-center justify-between text-rose-300">
-                <span>📦 blood-donor-pakistan-release-apk</span>
-                <span className="text-[9px] bg-rose-500/20 px-1.5 py-0.5 rounded text-rose-400">Ready</span>
+                <span>📦 debug-apk</span>
+                <span className="text-[9px] bg-emerald-500/20 px-1.5 py-0.5 rounded text-emerald-400">Ready to install</span>
               </div>
             </div>
           </div>

@@ -773,10 +773,10 @@ service cloud.firestore {
 }`
   },
   {
-    path: '.github/workflows/build-apk.yml',
-    name: 'build-apk.yml (GitHub Actions CI/CD)',
+    path: '.github/workflows/android.yml',
+    name: 'android.yml (GitHub Actions CI/CD)',
     type: 'gradle',
-    content: `name: Build Android APK
+    content: `name: Android APK Build
 
 on:
   push:
@@ -784,28 +784,14 @@ on:
   pull_request:
     branches: [ "main", "master" ]
   workflow_dispatch:
-    inputs:
-      build_type:
-        description: 'Build Type (debug / release / all)'
-        required: true
-        default: 'all'
-        type: choice
-        options:
-          - all
-          - debug
-          - release
-
-concurrency:
-  group: \${{ github.workflow }}-\${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   build:
-    name: Build & Package Android APK
+    name: Build Android Debug APK
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Source Code
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -813,62 +799,25 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-          cache: 'gradle'
-
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Cache Gradle Dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-          key: \${{ runner.os }}-gradle-\${{ hashFiles('**/*.gradle*', '**/gradle.properties') }}
-          restore-keys: |
-            \${{ runner.os }}-gradle-
-
-      - name: Determine Project Directory
-        id: project_dir
-        run: |
-          if [ -f "build.gradle" ]; then
-            echo "dir=." >> $GITHUB_OUTPUT
-          elif [ -f "android_project/build.gradle" ]; then
-            echo "dir=android_project" >> $GITHUB_OUTPUT
-          else
-            echo "dir=." >> $GITHUB_OUTPUT
-          fi
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '9.7.0'
 
       - name: Build Debug APK
-        if: \${{ github.event.inputs.build_type == 'all' || github.event.inputs.build_type == 'debug' || github.event_name != 'workflow_dispatch' }}
-        working-directory: \${{ steps.project_dir.outputs.dir }}
-        run: gradle assembleDebug --stacktrace
+        run: |
+          if [ -f "build.gradle" ]; then
+            gradle assembleDebug --stacktrace
+          elif [ -f "android_project/build.gradle" ]; then
+            cd android_project && gradle assembleDebug --stacktrace
+          fi
 
-      - name: Build Release APK (Unsigned)
-        if: \${{ github.event.inputs.build_type == 'all' || github.event.inputs.build_type == 'release' || github.event_name != 'workflow_dispatch' }}
-        working-directory: \${{ steps.project_dir.outputs.dir }}
-        run: gradle assembleRelease --stacktrace
-
-      - name: Upload Debug APK Artifact
-        if: always()
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: blood-donor-pakistan-debug-apk
-          path: \${{ steps.project_dir.outputs.dir }}/app/build/outputs/apk/debug/*.apk
-          retention-days: 30
-          if-no-files-found: warn
-
-      - name: Upload Release APK Artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: blood-donor-pakistan-release-apk
-          path: \${{ steps.project_dir.outputs.dir }}/app/build/outputs/apk/release/*.apk
-          retention-days: 30
+          name: debug-apk
+          path: |
+            app/build/outputs/apk/debug/*.apk
+            android_project/app/build/outputs/apk/debug/*.apk
           if-no-files-found: warn`
   },
   {
