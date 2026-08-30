@@ -55,36 +55,36 @@ jobs:
             for target in "${TARGETS[@]}"; do
               mkdir -p "$(dirname "$target")"
               cat << 'EOF' > "$target"
-{
-  "project_info": {
-    "project_number": "233022285048",
-    "project_id": "blood-donor-pakistan",
-    "storage_bucket": "blood-donor-pakistan.firebasestorage.app"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:233022285048:android:fdd4eb3a0017d314d0470d",
-        "android_client_info": {
-          "package_name": "com.blooddonorpakistan.app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDLzPZFdEgued1m2GVUBEPuY4qdk5T4XCM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    }
-  ],
-  "configuration_version": "1"
-}
-EOF
+          {
+            "project_info": {
+              "project_number": "233022285048",
+              "project_id": "blood-donor-pakistan",
+              "storage_bucket": "blood-donor-pakistan.firebasestorage.app"
+            },
+            "client": [
+              {
+                "client_info": {
+                  "mobilesdk_app_id": "1:233022285048:android:fdd4eb3a0017d314d0470d",
+                  "android_client_info": {
+                    "package_name": "com.blooddonorpakistan.app"
+                  }
+                },
+                "oauth_client": [],
+                "api_key": [
+                  {
+                    "current_key": "AIzaSyDLzPZFdEgued1m2GVUBEPuY4qdk5T4XCM"
+                  }
+                ],
+                "services": {
+                  "appinvite_service": {
+                    "other_platform_oauth_client": []
+                  }
+                }
+              }
+            ],
+            "configuration_version": "1"
+          }
+          EOF
             done
           fi
 
