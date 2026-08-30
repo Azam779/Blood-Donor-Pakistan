@@ -75,9 +75,6 @@ else
     fi
 fi
 
-# Increase maximum file descriptors if possible
-DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
-
 # Auto-download gradle-wrapper.jar if not present
 if [ ! -r "$CLASSPATH" ]; then
     mkdir -p "$APP_HOME/gradle/wrapper"
@@ -85,5 +82,5 @@ if [ ! -r "$CLASSPATH" ]; then
     curl -sSL -o "$CLASSPATH" https://raw.githubusercontent.com/gradle/gradle/v8.5.0/gradle/wrapper/gradle-wrapper.jar || true
 fi
 
-# Execute Gradle
-exec "$JAVACMD" "$DEFAULT_JVM_OPTS" $JAVA_OPTS $GRADLE_OPTS "-Dorg.gradle.appname=$APP_BASE_NAME" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
+# Execute Gradle Wrapper
+exec "$JAVACMD" "-Dorg.gradle.appname=$APP_BASE_NAME" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
